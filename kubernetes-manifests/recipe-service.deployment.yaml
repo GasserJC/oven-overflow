@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: recipe-service
+  labels:
+    app: smart-grocer-nodejs
+    svc: recipe
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: smart-grocer-nodejs
+      svc: recipe
+  template:
+    metadata:
+      labels:
+        app: smart-grocer-nodejs
+        svc: recipe
+    spec:
+     containers:
+      - name: recipe-backend
+        image: recipe-service
+        ports:
+        - name: http-server
+          containerPort: 8082
+        env:
+        - name: PORT
+          value: "8082"

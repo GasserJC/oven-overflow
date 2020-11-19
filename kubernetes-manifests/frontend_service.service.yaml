@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-service
+  labels:
+    app: smart-grocer-nodejs
+    tier: frontend
+spec:
+  type: LoadBalancer
+  selector:
+    app: smart-grocer-nodejs
+    tier: frontend
+  ports:
+  - port: 80
+    targetPort: http-server

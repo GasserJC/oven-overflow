@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: grocery-service
+  labels:
+    app: smart-grocer-nodejs
+    svc: grocery
+spec:
+  type: ClusterIP
+  selector:
+    app: smart-grocer-nodejs
+    svc: grocery
+  ports:
+  - port: 8085
+    targetPort: http-server

@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: recipes-service
+  labels:
+    app: smart-grocer-nodejs
+    svc: recipes
+spec:
+  type: ClusterIP
+  selector:
+    app: smart-grocer-nodejs
+    svc: recipes
+  ports:
+  - port: 8082
+    targetPort: http-server

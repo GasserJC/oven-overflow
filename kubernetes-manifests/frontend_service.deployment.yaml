@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-service
+  labels:
+    app: smart-grocer-nodejs
+    tier: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: smart-grocer-nodejs
+      tier: frontend
+  template:
+    metadata:
+      labels:
+        app: smart-grocer-nodejs
+        tier: frontend
+    spec:
+      containers:
+      - name: frontend
+        image: frontend-service
+        ports:
+        - name: http-server
+          containerPort: 8080
+        env:
+        - name: PORT
+          value: "8080"
+        - name: LOGIN_API
+          value: login-service:8081

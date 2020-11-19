@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pantry-service
+  labels:
+    app: smart-grocer-nodejs
+    svc: pantry
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: smart-grocer-nodejs
+      svc: pantry
+  template:
+    metadata:
+      labels:
+        app: smart-grocer-nodejs
+        svc: pantry
+    spec:
+     containers:
+      - name: pantry-backend
+        image: pantry-service
+        ports:
+        - name: http-server
+          containerPort: 8084
+        env:
+        - name: PORT
+          value: "8084"

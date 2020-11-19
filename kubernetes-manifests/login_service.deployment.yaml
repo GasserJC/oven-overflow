@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: login-service
+  labels:
+    app: smart-grocer-nodejs
+    tier: backend
+    svc: login
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: smart-grocer-nodejs
+      tier: backend
+      svc: login
+  template:
+    metadata:
+      labels:
+        app: smart-grocer-nodejs
+        tier: backend
+        svc: login
+    spec:
+     containers:
+      - name: login-backend
+        image: login-service
+        ports:
+        - name: http-server
+          containerPort: 8081
+        env:
+        - name: PORT
+          value: "8081"
