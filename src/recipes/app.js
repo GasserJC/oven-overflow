@@ -13,6 +13,14 @@ app.get('/byName/:food', async (req, res) => {
     res.status(200).send(response);
 });
 
+app.get('/byDetail/:food', async (req, res) => {
+    delete _items
+    delete response
+    _items = await Recipes.FindExactFoodByName(req.params['food'])
+    response = await Recipes.JSONIFY(_items);
+    res.status(200).send(response);
+});
+
 app.put('/byPantry', jsonParser, async (req, res) => {
     delete _items
     delete response

@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: meals-service
+  labels:
+    app: smart-grocer-nodejs
+    svc: meals
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: smart-grocer-nodejs
+      svc: meals
+  template:
+    metadata:
+      labels:
+        app: smart-grocer-nodejs
+        svc: meals
+    spec:
+     containers:
+      - name: meals-backend
+        image: meals-service
+        ports:
+        - name: http-server
+          containerPort: 8086
+        env:
+        - name: PORT
+          value: "8086"

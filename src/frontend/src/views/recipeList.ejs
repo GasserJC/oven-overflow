@@ -14,10 +14,9 @@
     <!-- Header -->
     <%- include ('partials/header.ejs') %>
     <ul>
-        <% recipes.forEach((item)=>{%>
-        <li><%=item['name']></li>
-        <%});%>
-        
+        <% results.forEach((item)=>{%>
+        <a href= "/RecipeDetails/<%=item['title'] %>" ><li><%=item['title'] %></li></a>
+        <%})%>
     </ul>
 </body>
 </html>

@@ -1,7 +1,7 @@
 const PORT = process.env.PORT
 const express = require('express');
 const app = express();
-const Pantry = requure('./pantry.js')
+const Pantry = require('./pantry.js')
 
 
 app.get('/AddItem/:title/:notes/:key/:usr', async (req, res) => {

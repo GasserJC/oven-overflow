@@ -9,21 +9,10 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src='recipes.js'></script>
 </head>
 <body>
     <!-- Header -->
     <%- include ('partials/header.ejs') %>
-    <div style="padding-left: 15%; padding-right: 15%; padding-top: 5%;">
-        <h1>Recipe Search Engine</h1>
-        <form class="form-inline my-2 my-lg-0" method="get" action="/RecipeList"> Search By: <p>&nbsp &nbsp &nbsp</p>
-            <input id="prm" class="form-control mr-sm-2" type="search" name="title" placeholder="Search" aria-label="Search" style="width: 80%" >
-            <input type="submit" value="Submit">
-        </form>
-        <div>
-            <p>Want to know all of the recipes you can make with what you already have?</p>
-            <a href="/RecipePantryList"><button id="pantry" class="btn btn-outline-success my-2 my-sm-0" type="button">All Makable Recipes</button></a>
-        </div>
-    </div>
+    <div style="padding-left: 3%; padding-top: 3%"><h1><strong><%= message %></strong></h1></div>
 </body>
 </html>
