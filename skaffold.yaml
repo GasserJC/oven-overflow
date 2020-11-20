@@ -11,8 +11,6 @@ build:
     context: src/recipes
   - image: login-service
     context: src/login
-  - image: recipe-service
-    context: src/recipe
   - image: grocery-service
     context: src/grocery
   - image: pantry-service
@@ -41,10 +39,6 @@ profiles:
         builder: "gcr.io/buildpacks/builder:v1"
     - image: login-service
       context: src/login
-      buildpack:
-        builder: "gcr.io/buildpacks/builder:v1"
-    - image: recipe-service
-      context: src/recipe
       buildpack:
         builder: "gcr.io/buildpacks/builder:v1"
     - image: pantry-service

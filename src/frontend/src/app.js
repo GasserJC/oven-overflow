@@ -9,9 +9,9 @@ app.set('views', path.join(__dirname, 'views'));
 
 //API Connections
 const RECIPE_API = process.env.RECIPE_API
-const RECIPE_URI = `http://${RECIPE_API}`
+const RECIPE_URI = `http://${RECIPE_API}/`
 const LOGIN_API = process.env.LOGIN_API
-const LOGIN_URI = `http://${LOGIN_API}`
+const LOGIN_URI = `http://${LOGIN_API}/`
 
 
 app.get('/', (req, res) => {
@@ -39,12 +39,39 @@ app.get('/signup', (req, res) => {
 });
 
 app.get('/LoginUsername', async (req, res) =>{
-  URI = LOGIN_URI + '/login/jacobG/password'
+  console.log(req)
+  username = req.query.username
+  password = req.query.password
+  URI = LOGIN_URI + 'login/' + username + '/' + password
+  console.log(URI)
   axios.get(URI)
     .then(response => {
-      res.status(200).send("Response: " + JSON.stringify(response.data) + " ADDY: " + LOGIN_URI)
-  }).catch(error => {
-    res.status(200).send("ERROR: " + error + " ADDY: " + RECIPE_URI)
+      if(JSON.stringify(response.data) != "{}"){
+        res.render('index.ejs')
+      } else {
+        res.render('login.ejs')
+      }
+  }).catch( () => {
+    res.render('Error.ejs')
+  })
+})
+
+app.get('/SignUpUser', async (req, res) =>{
+  console.log(req)
+  username = req.query.usr
+  password = req.query.pwd
+  email = req.query.eml
+  URI = LOGIN_URI + 'newlogin/'+ username + '/' + password + '/' + email 
+  console.log(URI)
+  axios.get(URI)
+    .then(response => {
+      if(JSON.stringify(response.data) != "{}"){
+        res.render('login.ejs')
+      } else {
+        res.render('signup.ejs')
+      }
+  }).catch( () => {
+    res.render('Error.ejs')
   })
 })
 

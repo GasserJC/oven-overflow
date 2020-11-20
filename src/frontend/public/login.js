@@ -10,7 +10,7 @@ TODO =>
     (selectable page) => signup
 */
 function validCred( cred, type ){
-    if(cred.length >= 8 && cred.length < 20){
+    if(cred.length >= 6 && cred.length < 20){
         if(type == 'UID'){
             if(!/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>@\?]/g.test(cred)){
                 return true;
@@ -22,27 +22,29 @@ function validCred( cred, type ){
     }
     return false;
 }
-var validUID = false;
-var validPWD = false;
+validUID = false;
+validPWD = false;
 window.addEventListener('load', function () {
-    let Window_ = document.getElementById('window');
-    var login = document.createElement("p");
+    Window_ = document.getElementById('window');
+    login = document.createElement("p");
     login.innerHTML=
     `
     <div class="container">
       <div class="center">
         <h1>Log In</h1>
-        <input id="UID" class="form-control mr-sm-2" type="search" placeholder="username" aria-label="username" style="width: 90%">
-        <input id="PWD" class="form-control mr-sm-2" type="password" placeholder="password" aria-label="password" style="width: 90%">
-        <br>
-        <p>need an account?: <a href="/signup">click here</a></p>
-        <input id="submit" class="btn btn-outline-primary" type="button" value="Need Credentials"></input>
+        <form action="/LoginUsername" method="get">
+            <input id="UID" class="form-control mr-sm-2" type="search" name="username" placeholder="username" aria-label="username" style="width: 90%">
+            <input id="PWD" class="form-control mr-sm-2" type="password" name="password"  placeholder="password" aria-label="password" style="width: 90%">
+            <br>
+            <p>need an account?: <a href="/signup">click here</a></p>
+            <input id="submit" class="btn btn-outline-primary" type="button" value="Need Credentials"></input>
+        </form>
       </div>
     </div>
     `;
     Window_.appendChild(login);
     document.getElementById("UID").addEventListener("blur", function(){
-        let UID = document.getElementById("UID").value;
+        UID = document.getElementById("UID").value;
         if(!validCred(UID, "UID")) {
             validUID = false;
             alert("Invalid Username Format");
@@ -59,7 +61,7 @@ window.addEventListener('load', function () {
         }
     });
     document.getElementById("PWD").addEventListener("blur", function(){
-        let PWD = document.getElementById("PWD").value;
+        PWD = document.getElementById("PWD").value;
         if(!validCred(PWD, "PWD")) {
             validPWD = false;
             alert("Invalid Password Format");
@@ -69,21 +71,12 @@ window.addEventListener('load', function () {
         if(validPWD && validUID){
             document.getElementById("submit").setAttribute("type", "submit");
             document.getElementById("submit").setAttribute("value", "Log In");
+            PWD.setAttribute("value", PWD.value);
+            UID.setAttribute("value", UID.value);
         }
         else{
             document.getElementById("submit").setAttribute("type", "button");
             document.getElementById("submit").setAttribute("value", "Need Credentials");
-        }
-    });
-    
-    document.getElementById("submit").addEventListener("click", function(){
-        let button = document.getElementById("submit");
-        if(button.getAttribute('type') == submit){
-            //make login API call;
-            //see if returned token is ""
-            //if not empty go to home
-            //if empty display alert that the login was invalid
-            //make session storage so if a user makes more than 6 attempts they cannot log in
         }
     });
 })

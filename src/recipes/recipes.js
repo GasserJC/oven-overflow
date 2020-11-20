@@ -1,4 +1,5 @@
 const express = require('express');
+const { serialize } = require('v8');
 const app = express();
 const RECIPES = require('./recipes.json')
 
@@ -6,6 +7,7 @@ async function FindFoodByName(search){
     delete items;
     delete ObjectKey;
     items = [];
+    search = search.toLowerCase()
     for (ObjectKey in RECIPES){
         if(RECIPES[ObjectKey]["title"] != undefined){
             if(RECIPES[ObjectKey]["title"].toLowerCase().includes(search)){
@@ -37,7 +39,7 @@ async function FindFoodByPantry(search){
             for (i = 0; i < search.length; i++){ //foreach ingredient in pantry
                 Break = false;
                 for( j = 0; j < ingredients.length; j++){
-                    if( ingredients[j].includes(search[i])){
+                    if( ingredients[j].toLowerCase().includes(search[i].toLowerCase())){
                         amnt--;
                         if(amnt == 0 && Items.length < 50){
                             delete RECIPES[ObjectKey]["picture_link"];
