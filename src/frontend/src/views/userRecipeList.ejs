@@ -9,35 +9,19 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src='pantry.js'></script>
     <link rel="stylesheet" href="site.css">
 </head>
 <body>
     <!-- Header -->
     <%- include ('partials/header.ejs') %>
     <div style="padding-top: 3%; padding-left:3%;">
-    <h1>Pantry</h1>
-    <form class="form-inline my-2 my-lg-0" method="get" action="/AddIngredient">Add to Pantry <p>&nbsp &nbsp &nbsp</p>
-        <input id="submit" style="background-color: #f2f2f2;" id="prm" class="form-control mr-sm-2" type="" name="title" placeholder="Add" aria-label="Add" style="width: 80%" >
-        <input id="submitBtn" class="btn btn-outline-primary" type="button" value=" + "></input>
-    </form>
-    <br>
-    <h2>Ingredients</h2>
-        <ul>
-            <% ejsData.ingredients.forEach((item)=>{%>
-            <li><a href="/RemoveIngredient?title=<%=item%>"><button id="removeItem" class="btn btn-danger"><%=item %></button></a></li>
-            <%})%>
+        <ul style="list-style-type: none;"><h1>Results</h1>
+            <div style="padding-left:3%;">
+                <% ejsData.results.forEach((item)=>{%>
+                <a href= "/RecipeDetails/<%=item %>" ><li style="font-size: 150%;"><%=item%></li></a>
+                <%})%>
+            </div>
         </ul>
     </div>
-    <script>
-        document.getElementById('submit').addEventListener('blur', () => {
-            console.log('+')
-            if(document.getElementById('submit').value != ''){
-                document.getElementById("submitBtn").setAttribute("type", "submit");
-            } else {
-                document.getElementById("submitBtn").setAttribute("type", "button");
-            }
-        })
-    </script>
 </body>
 </html>

@@ -3,19 +3,47 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Smart Grocer</title>
+    <title>Oven Overflow</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="site.css">
 </head>
 <body>
     <!-- Header -->
     <%- include ('partials/header.ejs') %>
-    
-    <p>
-        Home Page.
-    </p>
+    <div style="padding-top: 3%; padding-left:3%;">
+        <h1>Oven Overflow</h1>
+        <div style="padding-top: 3%; padding-left:3%;" >
+            <h2>The place to discover, create, and ask questions about cooking recipes</h2>
+            <ul>
+                <li>
+                    <h2><a href="/create">Create</a></h2>
+                    Use our recipe generator to create a recipe that anyone can use!
+                </li>
+                <li>
+                    <h2><a href="/recipes">Discover</a></h2>
+                    Use our powerful recipe engine to discover user recipes and trustd classics!
+                </li>
+                <li>
+                    <h2><a href="/qa">Question and Answer</a></h2>
+                    Ask or Answer questions in the Oven Overflow Community
+                </li>
+                <li>
+                    <h2><a href="/login">Become Apart of the Oven Overflow Community</a></h2>
+                    Our community is growing, the more people who join the better our services will be!<br/>
+                    Get the word out so we can create a one-of-a-kind cooking community!
+                </li>
+                <li>
+                    <h2>Future Features</h2>
+                    The more users we get, the more features we can add! <br/> 
+                    We are continually working on updating our recipe data set so we can add more features. <br/> 
+                    Please go ahead and add your own recipes so we can improve our services!
+                </li>
+            </ul>
+        </div>
+    </div>
 </body>
 </html>

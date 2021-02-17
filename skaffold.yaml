@@ -11,12 +11,8 @@ build:
     context: src/recipes
   - image: login-service
     context: src/login
-  - image: grocery-service
-    context: src/grocery
   - image: pantry-service
     context: src/pantry
-  - image: meals-service
-    context: src/meals
 # defines the Kubernetes manifests to deploy on each run
 deploy:
   kubectl:
@@ -47,12 +43,3 @@ profiles:
       context: src/pantry
       buildpack:
         builder: "gcr.io/buildpacks/builder:v1"
-    - image: grocery-service
-      context: src/grocery
-      buildpack:
-        builder: "gcr.io/buildpacks/builder:v1"
-    - image: meals-service
-      context: src/meals
-      buildpack:
-        builder: "gcr.io/buildpacks/builder:v1"
-

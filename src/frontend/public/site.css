@@ -3,7 +3,7 @@
     position: relative;
   }
   
-  .center {
+.center {
     margin: 0;
     position: absolute;
     top: 50%;
@@ -11,4 +11,41 @@
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     border-color: lightblue;
-  }
+}
+
+a{
+  color: black;
+}
+a:link {
+  color: black;
+}
+
+a:visited {
+  color: black;
+}
+
+a:hover {
+  color: orangered;
+}
+
+a:active {
+  color: black;
+}
+
+h1{
+  color: orangered;
+}
+
+body{
+  background-color:#e6e6e6
+}
+
+.navbar-default {
+  background-color: #595959;
+  border-color: #E7E7E7;
+}
+
+.navbar .navbar-expand-lg .navbar-light .bg-light{
+  background-color: #595959;
+  border-color: #E7E7E7;
+}

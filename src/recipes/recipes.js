@@ -1,16 +1,6 @@
 const express = require('express');
 const RECIPES = require('./recipes.json')
 
-function makeid(length) {
-    var result           = '';
-    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz#$%^&*()_+@!';
-    var charactersLength = characters.length;
-    for ( var i = 0; i < length; i++ ) {
-       result += characters.charAt(Math.floor(Math.random() * charactersLength));
-    }
-    return result;
- }
-
 async function FindFoodByName(search){
     delete items;
     delete ObjectKey;
@@ -40,49 +30,43 @@ async function FindExactFoodByName(search){
             if(RECIPES[ObjectKey]["title"].toLowerCase() == (search)){
                 delete RECIPES[ObjectKey]["picture_link"];
                 items.push(RECIPES[ObjectKey]);
-            }
-            if(items.length > 2){
-                break;
+                return items;
             }
         }
     }
     return items;
 }
 
-async function FindFoodByPantry(search){
-    delete Items;
-    delete ObjectKey;
-    delete Break;
-    delete i;
-    delete j;
-    delete amnt;
-    delete ingredients;
+function hasIngredient(ingredient, pantry){
+    for(i = pantry.length; i >= 0; i--){
+        if(ingredient.includes(pantry[i])){
+            return true
+        }
+    }
+    return false;
+}
 
-    Items = new Array();
-    for (ObjectKey in RECIPES){ //get recipe
+function FindFoodByPantry(pantry){
+    Items = []
+    remove = false;
+    for (ObjectKey in RECIPES){ //for each recipe
         if(RECIPES[ObjectKey]['ingredients'] != undefined && RECIPES[ObjectKey]['ingredients'] != null){
-            ingredients = RECIPES[ObjectKey]['ingredients'];
-            amnt = ingredients.length;
-            for (i = 0; i < search.length; i++){ //foreach ingredient in pantry
-                Break = false;
-                for( j = 0; j < ingredients.length; j++){
-                    if( ingredients[j].toLowerCase().includes(search[i].toLowerCase())){
-                        amnt--;
-                        if(amnt == 0 && Items.length < 2){
-                            delete RECIPES[ObjectKey]["picture_link"];
-                            Items.push(RECIPES[ObjectKey])
-                        }
-                    } else {
-                        Break = true;
-                        break;
-                    }
-                }   
-                if(Break){
+            ingrs = RECIPES[ObjectKey]['ingredients'];
+            count = 0;
+            for(ingr in ingrs){
+                if(!hasIngredient(ingrs[ingr], pantry)){
                     break;
+                } else if (count == ingrs.length - 1){
+                    console.log(RECIPES[ObjectKey]['title'])
+                    Items.push(RECIPES[ObjectKey]['title'])
                 }
+            }
+            if(Items.length > 15) { 
+                return Items
             }
         }
     }
+    console.log(Items) 
     return Items;
 }
 

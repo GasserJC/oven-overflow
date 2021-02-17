@@ -3,63 +3,32 @@ const express = require('express');
 const app = express();
 const Pantry = require('./pantry.js')
 
-
-app.get('/AddItem/:title/:notes/:key/:usr', async (req, res) => {
-  title = req.params["title"]
-  notes = req.params["notes"]
-  key = req.params["key"]
-  usr = req.params["usr"]
-  if(await Pantry.ValidKey(key, usr)){
-    if(await Pantry.AddItem(title, notes, key)){
-      res.status(200).send("{'message':'Successfully Added Item'}")
-    } else {
-      res.status(200).send(`{'message':'Failed to add ${title}, try again later.'}`)
-    }
-  } else {
-    res.status(200).send(`{'message':'Failed to add ${title}, User Pantry Not Found.'}`)
-  }
+app.get('/AddItem/:ingredient/:user', async (req, res) => {
+    ingredient = req.params["ingredient"]
+    user = req.params["user"]
+    await Pantry.AddItem(ingredient, user)
+    res.status(200).send('{"message":"Success"}')
 });
 
-app.get('/GetItem/:title/:key/:usr', async (req, res) => {
-  title = req.params["title"]
-  key = req.params["key"]
-  usr = req.params["usr"]
-  if(await Pantry.ValidKey(key, usr)){
-      response = await Pantry.GetItem(title, key)
-      res.status(200).send(response)
-    } else {
-      res.status(200).send(`{'message':'Failed to Get ${title}, try again later.'}`)
-    }
+app.get('/RemoveItem/:ingredient/:user', async (req, res) => {
+    ingredient = req.params["ingredient"]
+    user = req.params["user"]
+    await Pantry.DeleteItem(ingredient, user)
+    res.status(200).send('{"message":"Success"}')
 });
 
-app.get('/GetItemList/:key/:usr', async (req, res) => {
-  key = req.params["key"]
-  usr = req.params["usr"]
-  if(await Pantry.ValidKey(key, usr)){
-      response = await Pantry.GetItemList(title, key)
-      res.status(200).send(response)
-    } else {
-      res.status(200).send(`{'message':'Failed to Get Pantry, Try Again Later.'}`)
+app.get('/GetPantry/:user', async (req, res) => {
+    user = req.params["user"]
+    usrPantry = await Pantry.GetPantry(user)
+    sendPantry = {
+        ingredients: usrPantry
     }
-});
-
-app.get('/DeleteItem/:title/:key/:usr', async (req, res) => {
-  title = req.params["title"]
-  key = req.params["key"]
-  usr = req.params["usr"]
-  if(await Pantry.ValidKey(key, usr)){
-      response = await Pantry.DeleteItem(title, key)
-      res.status(200).send(response)
-    } else {
-      res.status(200).send(`{'message':'Failed to delete ${title}, Try Again Later.'}`)
-    }
+    res.status(200).send(sendPantry)
 });
 
 app.get('/*',  (req, res) => {
-  res.status(404).send("Error 404: Not Found");
+    res.status(404).send("Error 404: Not Found");
 });
 
-const port = process.env.PORT || 8080;
-app.listen(port, () => {
-  console.log(`App listening on port ${port}`);
+app.listen(PORT, () => {
 });

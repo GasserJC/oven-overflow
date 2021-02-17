@@ -33,11 +33,11 @@ window.addEventListener('load', function () {
       <div class="center">
         <h1>Log In</h1>
         <form action="/LoginUsername" method="get">
-            <input id="UID" class="form-control mr-sm-2" type="search" name="username" placeholder="username" aria-label="username" style="width: 90%">
-            <input id="PWD" class="form-control mr-sm-2" type="password" name="password"  placeholder="password" aria-label="password" style="width: 90%">
+            <input style="background-color: #f2f2f2;" id="UID" class="form-control mr-sm-2" type="search" name="username" placeholder="username" aria-label="username" style="width: 90%">
+            <input style="background-color: #f2f2f2;" id="PWD" class="form-control mr-sm-2" type="password" name="password"  placeholder="password" aria-label="password" style="width: 90%">
             <br>
             <p>need an account?: <a href="/signup">click here</a></p>
-            <input id="submit" class="btn btn-outline-primary" type="button" value="Need Credentials"></input>
+            <input id="submit" class="btn btn-outline-primary" type="button" value="Log In"></input>
         </form>
       </div>
     </div>
@@ -57,7 +57,7 @@ window.addEventListener('load', function () {
         }
         else{
             document.getElementById("submit").setAttribute("type", "button");
-            document.getElementById("submit").setAttribute("value", "Need Credentials");
+            document.getElementById("submit").setAttribute("value", "Log In");
         }
     });
     document.getElementById("PWD").addEventListener("blur", function(){
@@ -76,7 +76,7 @@ window.addEventListener('load', function () {
         }
         else{
             document.getElementById("submit").setAttribute("type", "button");
-            document.getElementById("submit").setAttribute("value", "Need Credentials");
+            document.getElementById("submit").setAttribute("value", "Log In");
         }
     });
 })

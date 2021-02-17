@@ -20,9 +20,16 @@ spec:
      containers:
       - name: recipes-backend
         image: recipes-service
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "500m"
+          limits:
+            memory: "750Mi"
+            cpu: "750m"
         ports:
         - name: http-server
-          containerPort: 8080
+          containerPort: 8065
         env:
         - name: PORT
-          value: "8080"
+          value: "8065"

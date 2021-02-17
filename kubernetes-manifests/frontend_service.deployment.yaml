@@ -20,13 +20,22 @@ spec:
       containers:
       - name: frontend
         image: frontend-service
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
         ports:
         - name: http-server
-          containerPort: 8080
+          containerPort: 8060
         env:
         - name: PORT
-          value: "8080"
+          value: "8060"
         - name: LOGIN_API
           value: login-service:8081
         - name: RECIPE_API
           value: recipes-service:8082
+        - name: PANTRY_API
+          value: pantry-service:8084

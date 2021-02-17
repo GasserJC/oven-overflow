@@ -40,7 +40,7 @@ function validCred( cred, type ){
             return true;
         }
     }
-    if(cred.length >= 8 && cred.length < 20){
+    if(cred.length >= 6 && cred.length < 20){
         if(type == 'UID'){
             if(!/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>@\?]/g.test(cred)){
                 //if (api call, has unique username)
@@ -68,12 +68,12 @@ window.addEventListener('load', function () {
         <h1>Sign Up</h1>
         <p>please create a unique username, a secure password (8 characters or more with at least one symbol and one number) as well as your email.</p>
         <form action="/SignUpUser" method="get">
-            <input id="UID" name="usr" class="form-control mr-sm-2" type="search" placeholder="username" aria-label="username" style="width: 90%">
-            <input id="PWD" name="pwd" class="form-control mr-sm-2" type="password" placeholder="password" aria-label="password" style="width: 90%">
-            <input id="EML" name="eml" class="form-control mr-sm-2" type="search" placeholder="email" aria-label="email" style="width: 90%">
+            <input style="background-color: #f2f2f2;" id="UID" name="usr" class="form-control mr-sm-2" type="search" placeholder="username" aria-label="username" style="width: 90%">
+            <input style="background-color: #f2f2f2;" id="PWD" name="pwd" class="form-control mr-sm-2" type="password" placeholder="password" aria-label="password" style="width: 90%">
+            <input style="background-color: #f2f2f2;" id="EML" name="eml" class="form-control mr-sm-2" type="search" placeholder="email" aria-label="email" style="width: 90%">
             <br>
             <p>Already have an account?: <a href="/login">click here</a></p>
-            <input id="submit" class="btn btn-outline-primary" type="button" value="Need Credentials"></input>
+            <input id="submit" class="btn btn-outline-primary" type="button" value="Log In"></input>
         </form>
       </div>
     </div>

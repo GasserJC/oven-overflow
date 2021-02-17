@@ -4,7 +4,7 @@ const Credentials = require('./credentials.js')
 const router = express.Router();
 router.use(bodyParser.json());
 
-router.get('/login/:usr/:pwd', async (req, res) => {
+router.get('/x812nka8hjsa10/login/:usr/:pwd', async (req, res) => {
     console.log(`received request: ${req.params} ${req.url}`)
     username = req.params["usr"]
     password = req.params["pwd"]
